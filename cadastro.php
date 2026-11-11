@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<?php require __DIR__ . '/includes/cabecalho.php '; ?>
+<?php include './includes/cabecalho.php '; ?>
 
 <main class="login">
     <section>
