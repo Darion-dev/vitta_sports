@@ -1,7 +1,6 @@
 <?php
 // exige que coneção com banco/ arquivo de conexão exista
 require './config/conecao.php';
-require './includes/conecao.php';
 
 // pega id da tela e verifica se é um numero inteiro e armazena
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);

@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($erros)) {
         try {
             // O arquivo de conexão deve criar uma variável PDO chamada $pdo.
-            require_once __DIR__ . '/config/conexao.php';
+            require_once __DIR__ . '/config/conecao.php';
 
             if (!isset($pdo) || !($pdo instanceof PDO)) {
                 throw new RuntimeException(
-                    'A conexão não foi encontrada. Verifique se config/conexao.php cria a variável $pdo.'
+                    'A coneção não foi encontrada. Verifique se config/conecao.php cria a variável $pdo.'
                 );
             }
 
@@ -56,16 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
                 $sql = 'INSERT INTO usuarios
-                            (nome, email, senha, tipo, criado_em)
+                            (nome, email, senha, e_admin, criado_em)
                         VALUES
-                            (:nome, :email, :senha, :tipo, NOW())';
+                            (:nome, :email, :senha, :e_admin, NOW())';
 
                 $inserir = $pdo->prepare($sql);
                 $inserir->execute([
                     ':nome' => $nome,
                     ':email' => $email,
                     ':senha' => $senhaHash,
-                    ':tipo' => 'cliente'
+                    ':e_admin' => 'cliente'
                 ]);
 
                 $sucesso = 'Cadastro realizado com sucesso! Agora você já pode entrar na sua conta.';
@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-?>
-<?php include './includes/cabecalho.php '; ?>
+
+include './includes/cabecalho.php'; ?>
 
 <main class="login">
     <section>
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 
     <form action="cadastro.php" method="post">
-        <small>NOVA CONTA</small>
+        <small>Nova Conta</small>
         <h2>Cadastre-se</h2>
 
         <?php if (!empty($erros)): ?>
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </main>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/includes/rodape.php'; ?>
 </body>
 
 </html>

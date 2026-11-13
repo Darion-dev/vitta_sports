@@ -26,7 +26,7 @@ $produtos = $pdo->query('SELECT id, nome, preco, descricao FROM produtos ORDER B
         <div class="products">
 
         <?php foreach ($produtos as $p): ?>
-            <a href="produto.php?id=<?= (int)$p['id'] ?>" class="products">
+            <a href="produtos.php?id=<?= (int)$p['id'] ?>" class="products">
                 <div class="visual">
                     vitta / <?(int)$p['id'] ?>
 

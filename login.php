@@ -1,29 +1,52 @@
 <?php
 include __DIR__ ."/includes/cabecalho.php"; 
+require "includes/funcoes.php";
+$email = "";
+$senha = "";
 ?>
-<main>
+ 
+<main class="login">
     <section>
-        <small>Bem-Vindo À Vitta</small>
+        <small>BEM-VINDO À VITTA</small>
         <h1>
-            Seu Proximo <br>
-            Passo Começa <br>
-            <em>Aqui</em>
+            SEU PRÓXIMO
+            <br>PASSO COMEÇA <br>
+            <em>AQUI</em>
         </h1>
     </section>
     <form action="./auth/autenticar.php" method="POST">
-        <small>Àrea restrita</small>
+        <small>ÁREA RESTRITA</small>
         <h2>Acesse sua conta</h2>
-        <?php if (isset($_GET["erro"])): ?>
-            <p class="notice">Email ou senha inválido.</p>
-            <?php endif; ?>
-            <label for="email">E-mail</label>
-            <input type="passaword" name="senha" id="id" required>
-            <button type="submit" class="btn">
-                Entrar
-            </button>
+ 
+        <?php  if(isset($_GET["erro"])): ?>
+            <p class="notice"> Email ou senha inválidos</p>
+        <?php endif; ?>
+ 
+        <label  for="email">E-mail:</label>
+        <input  type="email"
+                id="email"
+                name="email"
+                value="<?= e($email) ?>"
+                maxlength="150"
+                required>
+ 
+            <br><br>
+ 
+        <label  for="senha">Senha:</label>
+        <input  type="password"
+                id="senha"
+                name="senha"
+                minlength="8"
+                required>
+ 
+            <br><br>
+ 
+            <button type="submit" class="btn">Entrar</button>
+ 
     </form>
 </main>
-
+ 
 <?php
+ 
 include __DIR__ ."/includes/rodape.php";
 ?>

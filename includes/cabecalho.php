@@ -10,12 +10,12 @@
 
 <body>
     <header class="site-header">
-        <a href="index.httml" class="logo">Vitta <span>Sports</span></a>
+        <a href="index.php" class="logo">Vitta <span>Sports</span></a>
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="../loja.html">Loja</a>
-            <a href="../loguin.html">Entrar</a>
-            <a href="../cadastro.php">cadastrar</a>
+            <a href="index.php">Inicio</a>
+            <a href="loja.php">Loja</a>
+            <a href="login.php">Entrar</a>
+            <a href="cadastro.php">cadastrar</a>
         </nav>
 
 
