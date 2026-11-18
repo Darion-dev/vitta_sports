@@ -14,11 +14,11 @@ $produtos = $pdo->query('SELECT id, nome, preco, descricao FROM produtos ORDER B
             <em>Movimento</em>
         </h1>
         <p>Peças esportivas para acompanhar seu ritmo< dentro e fora do treino</p>
-        <a href="loja.html" clas="btn ligt">
+        <a href="loja.php" class="btn light">
             Explorar coleção
         </a>
         </div>
-        <b class="hero-art">Move</b>Your<br>Way.</b>
+        <b class="hero-art">Move<br>Your<br>Way.</b>
 
     </section>
     <section clas="section">

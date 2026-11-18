@@ -1,16 +1,45 @@
 <?php
-// função 'e' ela imprimi o texto, removendo os caracteres especiais que o html não reconhece
-function e(?string $valor): string{
-    return htmlspecialchars($valor ?? "", ENT_QUOTES, "UTF-8");
-}
-// verifica se o usuario é admistrador ou não se não for, vai para loguin
-function exigiradmin(): void
-// verifica se o estado da sessão é diferente de ativo, se for diferente ele inicia sessão (session_start)
+
+// Escapa valores antes de exibi-los no HTML.
+function e(?string $valor): string
 {
-    if (session_status() !== PHP_SESSION_ACTIVE)
+    return htmlspecialchars($valor ?? '', ENT_QUOTES, 'UTF-8');
+}
+
+// Exige que exista uma sessão autenticada.
+function exigirLogin(): void
+{
+    if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
-    if (!isset($_SESSION["usuario_id"]) || ($_SESSION['tipo'] ?? '') !== "admin") {
-        header("location: ../loguin.php");
-        exit();
+    }
+
+    if (!isset($_SESSION['usuario_id'])) {
+        header('Location: ../login.php');
+        exit;
     }
 }
+
+// Exige uma sessão autenticada com perfil de administrador.
+function exigirAdmin(): void
+{
+    exigirLogin();
+
+    if (($_SESSION['e_admin'] ?? '') !== 'admin') {
+        // Um cliente autenticado não deve ficar preso no ciclo de login.
+        header('Location: ../loja.php?acesso=negado');
+        exit;
+    }
+}
+
+// Exige uma sessão autenticada com perfil de cliente.
+// Use esta função futuramente nas páginas exclusivas do cliente.
+function exigirCliente(): void
+{
+    exigirLogin();
+
+    if (($_SESSION['e_admin'] ?? '') !== 'cliente') {
+        header('Location: ../admin/produtos.php');
+        exit;
+    }
+}
+ 

@@ -1,5 +1,6 @@
 <?php
 // exige que coneção com banco/ arquivo de conexão exista
+require './includes/funcoes.php';
 require './config/conecao.php';
 
 // pega id da tela e verifica se é um numero inteiro e armazena
@@ -14,11 +15,11 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 // WHERE p.id=id: where é o que estamos pesquisando produtos. id que é igual ao id da variavel de produto(variavel hipotetica)
 
-$stmt = $pdo->prepare('SELECT p. *, c, nome AS categorias
+$stmt = $pdo->prepare('SELECT p.*, c.nome AS categorias
 FROM produtos p
 INNER JOIN categorias c
 ON p.categoria_id =c.id
-WHERE p.id=id:');
+WHERE p.id=:id');
 
 // alteramos a variavel hipoteticamente (;id para o valor da variavel $id real )
 // ?: funciona como um if: verificamos se o valor não é zero

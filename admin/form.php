@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/..includes/funcoes.php';
+require_once __DIR__ . '/../includes/funcoes.php';
 exigiradmin();
 
 require_once __DIR__ . '/../config/conecao.php';
@@ -34,15 +34,15 @@ $cats = $pdo->query('SELECT * FROM categorias ORDER BY nome')->fetchAll();
         <form class="adminform" method="POST" action="salvar.php">
             <input type="hidden" name="id" value="<?= (int) ($p['id'] ?? 0) ?>">
             <label>Nome</label>
-            <input type="text" name="nome" required maxlength="100" value="<? e($p['nome']) ?>">
+            <input type="text" name="nome" required maxlength="100" value="<?= e($p['nome']) ?>">
             <label>Descrição</label>
             <textarea name="descricao"><?= e($p['descricao']) ?></textarea>
             <label>Preço</label>
-            <input type="number" name="preco" min="0" step=".01" required value="<? e((string) $p['preco']) ?>">
+            <input type="number" name="preco" min="0" step=".01" required value="<?= e((string) $p['preco']) ?>">
             <label>Imagem (caminho)</label>
-            <input name="imagem" value="<? e($p['imagem'] ?? '') ?>">
+            <input name="imagem" value="<?= e($p['imagem'] ?? '') ?>">
             <label>Tamanho</label>
-            <input name="tamanho" value="<? e($p['tamanho'] ?? '') ?>">
+            <input name="tamanho" value="<?= e($p['tamanho'] ?? '') ?>">
             <label>Estoque</label>
             <input name="estoque" type="number" min="0" value="<?= (int) $p['estoque'] ?>">
             <label>Categoria</label>
